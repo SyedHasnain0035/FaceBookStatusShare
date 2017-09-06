@@ -11,6 +11,9 @@ import UserNotifications
 class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     @IBOutlet weak var answerLabel: UILabel!
     
+    @IBOutlet weak var sideMenuConstrain: NSLayoutConstraint!
+    @IBOutlet weak var sideMenu: UIView!
+    var isSideMenu = false
     override func viewDidLoad() {
         super.viewDidLoad()
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (didAlow, error) in
@@ -45,6 +48,22 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let requst = UNNotificationRequest(identifier: "timerDone", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(requst, withCompletionHandler: nil)
+        
+    }
+    
+    @IBAction func didTapSideMenu(_ sender: UIBarButtonItem) {
+        if (isSideMenu) {
+            sideMenuConstrain.constant = -150
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            sideMenuConstrain.constant = 0
+            UIView.animate(withDuration: 0.3, animations: { 
+                self.view.layoutIfNeeded()
+            })
+        }
+        isSideMenu = !isSideMenu
         
     }
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
