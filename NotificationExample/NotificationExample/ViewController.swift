@@ -11,6 +11,8 @@ import UserNotifications
 class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     @IBOutlet weak var answerLabel: UILabel!
     
+    @IBOutlet weak var numberLabel: UILabel!
+    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var sideMenuConstrain: NSLayoutConstraint!
     @IBOutlet weak var sideMenu: UIView!
     var isSideMenu = false
@@ -28,6 +30,11 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    @IBAction func didTapConvertButton(_ sender: UIButton) {
+        let num = Double(self.textField.text!)!
+        self.numberLabel.text = "\(num.roundTo(places: 2))"
+    }
     @IBAction func notificationSend(_ sender: UIButton) {
         notificationFunction()
     }
@@ -76,4 +83,9 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
-
+extension Double {
+    func roundTo(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
