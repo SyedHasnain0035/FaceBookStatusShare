@@ -135,8 +135,7 @@ extension ViewController {
                                  fileName: "image.jpg",
                                  mimeType: "image/jpeg")
     },
-      to: "http://api.imagga.com/v1/content",
-      headers: ["Authorization": "Basic YWNjX2I1NDlhYTI4NGZlNTNmZDowNjNjNjhkMzYwYjJkYWRlN2NiNWYzOTFhMmQxYmYzOQ"],
+      with: ImaggaRouter.content,
       encodingCompletion: { encodingResult in
         switch encodingResult {
         case .success(let upload, _, _):
@@ -163,7 +162,11 @@ extension ViewController {
             }
             
             print("Content uploaded with ID: \(firstFileID)")
-            
+            self.downloadTags(contentID: firstFileID) { tags in
+              self.downloadColors(contentID: firstFileID) { colors in
+                completion(tags, colors)
+              }
+            }
             // 3.
             completion([String](), [PhotoColor]())
           }
@@ -173,5 +176,74 @@ extension ViewController {
     }
     )
   
+  }
+  func downloadTags(contentID: String, completion: @escaping ([String]) -> Void) {
+   Alamofire.request(ImaggaRouter.tags(contentID))
+      .responseJSON { response in
+        // 1.
+        guard response.result.isSuccess else {
+          print("Error while fetching tags: \(response.result.error)")
+          completion([String]())
+          return
+        }
+        
+        // 2.
+        guard let responseJSON = response.result.value as? [String: Any],
+          let results = responseJSON["results"] as? [[String: Any]],
+          let firstObject = results.first,
+          let tagsAndConfidences = firstObject["tags"] as? [[String: Any]] else {
+            print("Invalid tag information received from the service")
+            completion([String]())
+            return
+        }
+        
+        // 3.
+        let tags = tagsAndConfidences.flatMap({ dict in
+          return dict["tag"] as? String
+        })
+        
+        // 4.
+        completion(tags)
+    }
+  }
+  func downloadColors(contentID: String, completion: @escaping ([PhotoColor]) -> Void) {
+   Alamofire.request(ImaggaRouter.colors(contentID))
+      .responseJSON { response in
+        // 2.
+        guard response.result.isSuccess else {
+          print("Error while fetching colors: \(response.result.error)")
+          completion([PhotoColor]())
+          return
+        }
+        
+        // 3.
+        guard let responseJSON = response.result.value as? [String: Any],
+          let results = responseJSON["results"] as? [[String: Any]],
+          let firstResult = results.first,
+          let info = firstResult["info"] as? [String: Any],
+          let imageColors = info["image_colors"] as? [[String: Any]] else {
+            print("Invalid color information received from service")
+            completion([PhotoColor]())
+            return
+        }
+        
+        // 4.
+        let photoColors = imageColors.flatMap({ (dict) -> PhotoColor? in
+          guard let r = dict["r"] as? String,
+            let g = dict["g"] as? String,
+            let b = dict["b"] as? String,
+            let closestPaletteColor = dict["closest_palette_color"] as? String else {
+              return nil
+          }
+          
+          return PhotoColor(red: Int(r),
+                            green: Int(g),
+                            blue: Int(b),
+                            colorName: closestPaletteColor)
+        })
+        
+        // 5.
+        completion(photoColors)
+    }
   }
 }

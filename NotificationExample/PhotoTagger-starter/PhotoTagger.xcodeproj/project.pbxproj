@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		419F338C1F6BF630001BA57E /* ImaggaRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419F338B1F6BF630001BA57E /* ImaggaRouter.swift */; };
 		789313D4EB7D810E9AF7F50F /* Pods_PhotoTagger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3500501D2F39928A7A1A8E0E /* Pods_PhotoTagger.framework */; };
 		932ED1F71BF9390D0072C1C4 /* PhotoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932ED1F61BF9390D0072C1C4 /* PhotoColor.swift */; };
 		932ED1F91BF944590072C1C4 /* TagsColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932ED1F81BF944590072C1C4 /* TagsColorsViewController.swift */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		0DC269835633D06A7765015C /* Pods-PhotoTagger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoTagger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoTagger/Pods-PhotoTagger.debug.xcconfig"; sourceTree = "<group>"; };
 		3500501D2F39928A7A1A8E0E /* Pods_PhotoTagger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoTagger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		419F338B1F6BF630001BA57E /* ImaggaRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImaggaRouter.swift; sourceTree = "<group>"; };
 		6AC2360125ED9A0E6C3B62C4 /* Pods-PhotoTagger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoTagger.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoTagger/Pods-PhotoTagger.release.xcconfig"; sourceTree = "<group>"; };
 		932ED1F61BF9390D0072C1C4 /* PhotoColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoColor.swift; sourceTree = "<group>"; };
 		932ED1F81BF944590072C1C4 /* TagsColorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsColorsViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				932ED1F81BF944590072C1C4 /* TagsColorsViewController.swift */,
 				9569363D1E0B06AC00B49A5A /* TagsColorTableData.swift */,
 				93EF0CA51BF41DA20051B5B1 /* ViewController.swift */,
+				419F338B1F6BF630001BA57E /* ImaggaRouter.swift */,
 			);
 			path = PhotoTagger;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				932ED1F91BF944590072C1C4 /* TagsColorsViewController.swift in Sources */,
 				932ED1FB1BF9459E0072C1C4 /* TagsColorsTableViewController.swift in Sources */,
 				9569363E1E0B06AC00B49A5A /* TagsColorTableData.swift in Sources */,
+				419F338C1F6BF630001BA57E /* ImaggaRouter.swift in Sources */,
 				93EF0CA61BF41DA20051B5B1 /* ViewController.swift in Sources */,
 				93EF0CA41BF41DA20051B5B1 /* AppDelegate.swift in Sources */,
 			);
