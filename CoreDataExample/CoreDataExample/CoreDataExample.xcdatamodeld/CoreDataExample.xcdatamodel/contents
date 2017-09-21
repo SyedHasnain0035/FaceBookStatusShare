@@ -3,7 +3,12 @@
     <entity name="ListItem" representedClassName="ListItem" syncable="YES" codeGenerationType="class">
         <attribute name="item" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Users" representedClassName="Users" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="ListItem" positionX="-54" positionY="9" width="128" height="60"/>
+        <element name="Users" positionX="-54" positionY="18" width="128" height="75"/>
     </elements>
 </model>
