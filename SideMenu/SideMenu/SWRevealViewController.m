@@ -22,6 +22,9 @@
 
  Early code inspired on a similar class by Philip Kluz (Philip.Kluz@zuui.org)
  
+ a
+ d
+ as
 */
 
 #import <QuartzCore/QuartzCore.h>
